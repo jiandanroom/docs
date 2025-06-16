@@ -1,15 +1,25 @@
 # Name Jiandan Java API Library
 
+<!-- x-release-please-start-version -->
+
 [![Maven Central](https://img.shields.io/maven-central/v/com.name_jiandan.api/name-jiandan-java)](https://central.sonatype.com/artifact/com.name_jiandan.api/name-jiandan-java/0.0.1-alpha.0)
 [![javadoc](https://javadoc.io/badge2/com.name_jiandan.api/name-jiandan-java/0.0.1-alpha.0/javadoc.svg)](https://javadoc.io/doc/com.name_jiandan.api/name-jiandan-java/0.0.1-alpha.0)
+
+<!-- x-release-please-end -->
 
 The Name Jiandan Java SDK provides convenient access to the [Name Jiandan REST API](https://api.example.com/support) from applications written in Java.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
+<!-- x-release-please-start-version -->
+
 The REST API documentation can be found on [api.example.com](https://api.example.com/support). Javadocs are available on [javadoc.io](https://javadoc.io/doc/com.name_jiandan.api/name-jiandan-java/0.0.1-alpha.0).
 
+<!-- x-release-please-end -->
+
 ## Installation
+
+<!-- x-release-please-start-version -->
 
 ### Gradle
 
@@ -26,6 +36,8 @@ implementation("com.name_jiandan.api:name-jiandan-java:0.0.1-alpha.0")
   <version>0.0.1-alpha.0</version>
 </dependency>
 ```
+
+<!-- x-release-please-end -->
 
 ## Requirements
 
@@ -563,4 +575,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/name-jiandan-java/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/jiandanroom/docs/issues) with questions, bugs, or suggestions.

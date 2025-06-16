@@ -27,9 +27,9 @@ configure<PublishingExtension> {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/stainless-sdks/name-jiandan-java.git")
-                    developerConnection.set("scm:git:git://github.com/stainless-sdks/name-jiandan-java.git")
-                    url.set("https://github.com/stainless-sdks/name-jiandan-java")
+                    connection.set("scm:git:git://github.com/jiandanroom/docs.git")
+                    developerConnection.set("scm:git:git://github.com/jiandanroom/docs.git")
+                    url.set("https://github.com/jiandanroom/docs")
                 }
 
                 versionMapping {
