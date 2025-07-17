@@ -17,5 +17,12 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 application {
-    mainClass = "com.name_jiandan.api.example.Main"
+    // Use `./gradlew :name-jiandan-java-example:run` to run `Main`
+    // Use `./gradlew :name-jiandan-java-example:run -Dexample=Something` to run `SomethingExample`
+    mainClass = "com.name_jiandan.api.example.${
+        if (project.hasProperty("example"))
+            "${project.property("example")}Example"
+        else
+            "Main"
+    }"
 }
