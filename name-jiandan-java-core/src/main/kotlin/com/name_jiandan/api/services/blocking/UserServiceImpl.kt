@@ -3,14 +3,14 @@
 package com.name_jiandan.api.services.blocking
 
 import com.name_jiandan.api.core.ClientOptions
-import com.name_jiandan.api.core.JsonValue
 import com.name_jiandan.api.core.RequestOptions
 import com.name_jiandan.api.core.checkRequired
+import com.name_jiandan.api.core.handlers.errorBodyHandler
 import com.name_jiandan.api.core.handlers.errorHandler
 import com.name_jiandan.api.core.handlers.jsonHandler
-import com.name_jiandan.api.core.handlers.withErrorHandler
 import com.name_jiandan.api.core.http.HttpMethod
 import com.name_jiandan.api.core.http.HttpRequest
+import com.name_jiandan.api.core.http.HttpResponse
 import com.name_jiandan.api.core.http.HttpResponse.Handler
 import com.name_jiandan.api.core.http.HttpResponseFor
 import com.name_jiandan.api.core.http.json
@@ -53,7 +53,8 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
     class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
         UserService.WithRawResponse {
 
-        private val errorHandler: Handler<JsonValue> = errorHandler(clientOptions.jsonMapper)
+        private val errorHandler: Handler<HttpResponse> =
+            errorHandler(errorBodyHandler(clientOptions.jsonMapper))
 
         override fun withOptions(
             modifier: Consumer<ClientOptions.Builder>
@@ -63,7 +64,7 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
             )
 
         private val createHandler: Handler<UserResponse> =
-            jsonHandler<UserResponse>(clientOptions.jsonMapper).withErrorHandler(errorHandler)
+            jsonHandler<UserResponse>(clientOptions.jsonMapper)
 
         override fun create(
             params: UserCreateParams,
@@ -79,7 +80,7 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
                     .prepare(clientOptions, params)
             val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
             val response = clientOptions.httpClient.execute(request, requestOptions)
-            return response.parseable {
+            return errorHandler.handle(response).parseable {
                 response
                     .use { createHandler.handle(it) }
                     .also {
@@ -91,7 +92,7 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
         }
 
         private val retrieveHandler: Handler<UserResponse> =
-            jsonHandler<UserResponse>(clientOptions.jsonMapper).withErrorHandler(errorHandler)
+            jsonHandler<UserResponse>(clientOptions.jsonMapper)
 
         override fun retrieve(
             params: UserRetrieveParams,
@@ -109,7 +110,7 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
                     .prepare(clientOptions, params)
             val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
             val response = clientOptions.httpClient.execute(request, requestOptions)
-            return response.parseable {
+            return errorHandler.handle(response).parseable {
                 response
                     .use { retrieveHandler.handle(it) }
                     .also {
@@ -121,7 +122,7 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
         }
 
         private val listHandler: Handler<UserListResponse> =
-            jsonHandler<UserListResponse>(clientOptions.jsonMapper).withErrorHandler(errorHandler)
+            jsonHandler<UserListResponse>(clientOptions.jsonMapper)
 
         override fun list(
             params: UserListParams,
@@ -136,7 +137,7 @@ class UserServiceImpl internal constructor(private val clientOptions: ClientOpti
                     .prepare(clientOptions, params)
             val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
             val response = clientOptions.httpClient.execute(request, requestOptions)
-            return response.parseable {
+            return errorHandler.handle(response).parseable {
                 response
                     .use { listHandler.handle(it) }
                     .also {

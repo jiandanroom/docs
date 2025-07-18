@@ -3,14 +3,14 @@
 package com.name_jiandan.api.services.async
 
 import com.name_jiandan.api.core.ClientOptions
-import com.name_jiandan.api.core.JsonValue
 import com.name_jiandan.api.core.RequestOptions
 import com.name_jiandan.api.core.checkRequired
+import com.name_jiandan.api.core.handlers.errorBodyHandler
 import com.name_jiandan.api.core.handlers.errorHandler
 import com.name_jiandan.api.core.handlers.jsonHandler
-import com.name_jiandan.api.core.handlers.withErrorHandler
 import com.name_jiandan.api.core.http.HttpMethod
 import com.name_jiandan.api.core.http.HttpRequest
+import com.name_jiandan.api.core.http.HttpResponse
 import com.name_jiandan.api.core.http.HttpResponse.Handler
 import com.name_jiandan.api.core.http.HttpResponseFor
 import com.name_jiandan.api.core.http.json
@@ -61,7 +61,8 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
     class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
         UserServiceAsync.WithRawResponse {
 
-        private val errorHandler: Handler<JsonValue> = errorHandler(clientOptions.jsonMapper)
+        private val errorHandler: Handler<HttpResponse> =
+            errorHandler(errorBodyHandler(clientOptions.jsonMapper))
 
         override fun withOptions(
             modifier: Consumer<ClientOptions.Builder>
@@ -71,7 +72,7 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
             )
 
         private val createHandler: Handler<UserResponse> =
-            jsonHandler<UserResponse>(clientOptions.jsonMapper).withErrorHandler(errorHandler)
+            jsonHandler<UserResponse>(clientOptions.jsonMapper)
 
         override fun create(
             params: UserCreateParams,
@@ -89,7 +90,7 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
             return request
                 .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
                 .thenApply { response ->
-                    response.parseable {
+                    errorHandler.handle(response).parseable {
                         response
                             .use { createHandler.handle(it) }
                             .also {
@@ -102,7 +103,7 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
         }
 
         private val retrieveHandler: Handler<UserResponse> =
-            jsonHandler<UserResponse>(clientOptions.jsonMapper).withErrorHandler(errorHandler)
+            jsonHandler<UserResponse>(clientOptions.jsonMapper)
 
         override fun retrieve(
             params: UserRetrieveParams,
@@ -122,7 +123,7 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
             return request
                 .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
                 .thenApply { response ->
-                    response.parseable {
+                    errorHandler.handle(response).parseable {
                         response
                             .use { retrieveHandler.handle(it) }
                             .also {
@@ -135,7 +136,7 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
         }
 
         private val listHandler: Handler<UserListResponse> =
-            jsonHandler<UserListResponse>(clientOptions.jsonMapper).withErrorHandler(errorHandler)
+            jsonHandler<UserListResponse>(clientOptions.jsonMapper)
 
         override fun list(
             params: UserListParams,
@@ -152,7 +153,7 @@ class UserServiceAsyncImpl internal constructor(private val clientOptions: Clien
             return request
                 .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
                 .thenApply { response ->
-                    response.parseable {
+                    errorHandler.handle(response).parseable {
                         response
                             .use { listHandler.handle(it) }
                             .also {
