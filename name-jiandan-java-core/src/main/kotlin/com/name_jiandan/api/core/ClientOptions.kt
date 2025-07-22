@@ -224,8 +224,10 @@ private constructor(
         fun timeout(): Timeout = timeout
 
         fun fromEnv() = apply {
-            System.getenv("NAME_JIANDAN_BASE_URL")?.let { baseUrl(it) }
-            System.getenv("NAME_JIANDAN_API_KEY")?.let { apiKey(it) }
+            (System.getProperty("namejiandan.baseUrl") ?: System.getenv("NAME_JIANDAN_BASE_URL"))
+                ?.let { baseUrl(it) }
+            (System.getProperty("namejiandan.apiKey") ?: System.getenv("NAME_JIANDAN_API_KEY"))
+                ?.let { apiKey(it) }
         }
 
         /**

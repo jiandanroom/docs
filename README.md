@@ -51,7 +51,8 @@ import com.name_jiandan.api.client.okhttp.NameJiandanOkHttpClient;
 import com.name_jiandan.api.models.users.UserListParams;
 import com.name_jiandan.api.models.users.UserListResponse;
 
-// Configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
+// Configures using the `namejiandan.apiKey` and `namejiandan.baseUrl` system properties
+// Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
 NameJiandanClient client = NameJiandanOkHttpClient.fromEnv();
 
 UserListResponse users = client.users().list();
@@ -59,13 +60,14 @@ UserListResponse users = client.users().list();
 
 ## Client configuration
 
-Configure the client using environment variables:
+Configure the client using system properties or environment variables:
 
 ```java
 import com.name_jiandan.api.client.NameJiandanClient;
 import com.name_jiandan.api.client.okhttp.NameJiandanOkHttpClient;
 
-// Configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
+// Configures using the `namejiandan.apiKey` and `namejiandan.baseUrl` system properties
+// Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
 NameJiandanClient client = NameJiandanOkHttpClient.fromEnv();
 ```
 
@@ -87,7 +89,8 @@ import com.name_jiandan.api.client.NameJiandanClient;
 import com.name_jiandan.api.client.okhttp.NameJiandanOkHttpClient;
 
 NameJiandanClient client = NameJiandanOkHttpClient.builder()
-    // Configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
+    // Configures using the `namejiandan.apiKey` and `namejiandan.baseUrl` system properties
+    Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
     .fromEnv()
     .apiKey("My API Key")
     .build();
@@ -95,10 +98,12 @@ NameJiandanClient client = NameJiandanOkHttpClient.builder()
 
 See this table for the available options:
 
-| Setter    | Environment variable    | Required | Default value                  |
-| --------- | ----------------------- | -------- | ------------------------------ |
-| `apiKey`  | `NAME_JIANDAN_API_KEY`  | true     | -                              |
-| `baseUrl` | `NAME_JIANDAN_BASE_URL` | true     | `"https://api.example.com/v1"` |
+| Setter    | System property       | Environment variable    | Required | Default value                  |
+| --------- | --------------------- | ----------------------- | -------- | ------------------------------ |
+| `apiKey`  | `namejiandan.apiKey`  | `NAME_JIANDAN_API_KEY`  | true     | -                              |
+| `baseUrl` | `namejiandan.baseUrl` | `NAME_JIANDAN_BASE_URL` | true     | `"https://api.example.com/v1"` |
+
+System properties take precedence over environment variables.
 
 > [!TIP]
 > Don't create more than one client in the same application. Each client has a connection pool and
@@ -144,7 +149,8 @@ import com.name_jiandan.api.models.users.UserListParams;
 import com.name_jiandan.api.models.users.UserListResponse;
 import java.util.concurrent.CompletableFuture;
 
-// Configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
+// Configures using the `namejiandan.apiKey` and `namejiandan.baseUrl` system properties
+// Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
 NameJiandanClient client = NameJiandanOkHttpClient.fromEnv();
 
 CompletableFuture<UserListResponse> users = client.async().users().list();
@@ -159,7 +165,8 @@ import com.name_jiandan.api.models.users.UserListParams;
 import com.name_jiandan.api.models.users.UserListResponse;
 import java.util.concurrent.CompletableFuture;
 
-// Configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
+// Configures using the `namejiandan.apiKey` and `namejiandan.baseUrl` system properties
+// Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
 NameJiandanClientAsync client = NameJiandanOkHttpClientAsync.fromEnv();
 
 CompletableFuture<UserListResponse> users = client.users().list();
