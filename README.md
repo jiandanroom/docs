@@ -90,7 +90,7 @@ import com.name_jiandan.api.client.okhttp.NameJiandanOkHttpClient;
 
 NameJiandanClient client = NameJiandanOkHttpClient.builder()
     // Configures using the `namejiandan.apiKey` and `namejiandan.baseUrl` system properties
-    Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
+    // Or configures using the `NAME_JIANDAN_API_KEY` and `NAME_JIANDAN_BASE_URL` environment variables
     .fromEnv()
     .apiKey("My API Key")
     .build();
