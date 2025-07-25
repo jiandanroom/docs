@@ -31,7 +31,7 @@ interface UserServiceAsync {
     fun create(params: UserCreateParams): CompletableFuture<UserResponse> =
         create(params, RequestOptions.none())
 
-    /** @see [create] */
+    /** @see create */
     fun create(
         params: UserCreateParams,
         requestOptions: RequestOptions = RequestOptions.none(),
@@ -41,7 +41,7 @@ interface UserServiceAsync {
     fun retrieve(userId: String): CompletableFuture<UserResponse> =
         retrieve(userId, UserRetrieveParams.none())
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(
         userId: String,
         params: UserRetrieveParams = UserRetrieveParams.none(),
@@ -49,40 +49,40 @@ interface UserServiceAsync {
     ): CompletableFuture<UserResponse> =
         retrieve(params.toBuilder().userId(userId).build(), requestOptions)
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(
         userId: String,
         params: UserRetrieveParams = UserRetrieveParams.none(),
     ): CompletableFuture<UserResponse> = retrieve(userId, params, RequestOptions.none())
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(
         params: UserRetrieveParams,
         requestOptions: RequestOptions = RequestOptions.none(),
     ): CompletableFuture<UserResponse>
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(params: UserRetrieveParams): CompletableFuture<UserResponse> =
         retrieve(params, RequestOptions.none())
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(userId: String, requestOptions: RequestOptions): CompletableFuture<UserResponse> =
         retrieve(userId, UserRetrieveParams.none(), requestOptions)
 
     /** 返回所有用户的分页列表 */
     fun list(): CompletableFuture<UserListResponse> = list(UserListParams.none())
 
-    /** @see [list] */
+    /** @see list */
     fun list(
         params: UserListParams = UserListParams.none(),
         requestOptions: RequestOptions = RequestOptions.none(),
     ): CompletableFuture<UserListResponse>
 
-    /** @see [list] */
+    /** @see list */
     fun list(params: UserListParams = UserListParams.none()): CompletableFuture<UserListResponse> =
         list(params, RequestOptions.none())
 
-    /** @see [list] */
+    /** @see list */
     fun list(requestOptions: RequestOptions): CompletableFuture<UserListResponse> =
         list(UserListParams.none(), requestOptions)
 
@@ -103,7 +103,7 @@ interface UserServiceAsync {
         fun create(params: UserCreateParams): CompletableFuture<HttpResponseFor<UserResponse>> =
             create(params, RequestOptions.none())
 
-        /** @see [create] */
+        /** @see create */
         fun create(
             params: UserCreateParams,
             requestOptions: RequestOptions = RequestOptions.none(),
@@ -116,7 +116,7 @@ interface UserServiceAsync {
         fun retrieve(userId: String): CompletableFuture<HttpResponseFor<UserResponse>> =
             retrieve(userId, UserRetrieveParams.none())
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         fun retrieve(
             userId: String,
             params: UserRetrieveParams = UserRetrieveParams.none(),
@@ -124,24 +124,24 @@ interface UserServiceAsync {
         ): CompletableFuture<HttpResponseFor<UserResponse>> =
             retrieve(params.toBuilder().userId(userId).build(), requestOptions)
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         fun retrieve(
             userId: String,
             params: UserRetrieveParams = UserRetrieveParams.none(),
         ): CompletableFuture<HttpResponseFor<UserResponse>> =
             retrieve(userId, params, RequestOptions.none())
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         fun retrieve(
             params: UserRetrieveParams,
             requestOptions: RequestOptions = RequestOptions.none(),
         ): CompletableFuture<HttpResponseFor<UserResponse>>
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         fun retrieve(params: UserRetrieveParams): CompletableFuture<HttpResponseFor<UserResponse>> =
             retrieve(params, RequestOptions.none())
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         fun retrieve(
             userId: String,
             requestOptions: RequestOptions,
@@ -155,19 +155,19 @@ interface UserServiceAsync {
         fun list(): CompletableFuture<HttpResponseFor<UserListResponse>> =
             list(UserListParams.none())
 
-        /** @see [list] */
+        /** @see list */
         fun list(
             params: UserListParams = UserListParams.none(),
             requestOptions: RequestOptions = RequestOptions.none(),
         ): CompletableFuture<HttpResponseFor<UserListResponse>>
 
-        /** @see [list] */
+        /** @see list */
         fun list(
             params: UserListParams = UserListParams.none()
         ): CompletableFuture<HttpResponseFor<UserListResponse>> =
             list(params, RequestOptions.none())
 
-        /** @see [list] */
+        /** @see list */
         fun list(
             requestOptions: RequestOptions
         ): CompletableFuture<HttpResponseFor<UserListResponse>> =
