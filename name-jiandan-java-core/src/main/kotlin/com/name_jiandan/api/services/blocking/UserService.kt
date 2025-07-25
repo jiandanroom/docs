@@ -30,7 +30,7 @@ interface UserService {
     /** 创建新用户 */
     fun create(params: UserCreateParams): UserResponse = create(params, RequestOptions.none())
 
-    /** @see [create] */
+    /** @see create */
     fun create(
         params: UserCreateParams,
         requestOptions: RequestOptions = RequestOptions.none(),
@@ -39,46 +39,46 @@ interface UserService {
     /** 获取单个用户 */
     fun retrieve(userId: String): UserResponse = retrieve(userId, UserRetrieveParams.none())
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(
         userId: String,
         params: UserRetrieveParams = UserRetrieveParams.none(),
         requestOptions: RequestOptions = RequestOptions.none(),
     ): UserResponse = retrieve(params.toBuilder().userId(userId).build(), requestOptions)
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(
         userId: String,
         params: UserRetrieveParams = UserRetrieveParams.none(),
     ): UserResponse = retrieve(userId, params, RequestOptions.none())
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(
         params: UserRetrieveParams,
         requestOptions: RequestOptions = RequestOptions.none(),
     ): UserResponse
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(params: UserRetrieveParams): UserResponse = retrieve(params, RequestOptions.none())
 
-    /** @see [retrieve] */
+    /** @see retrieve */
     fun retrieve(userId: String, requestOptions: RequestOptions): UserResponse =
         retrieve(userId, UserRetrieveParams.none(), requestOptions)
 
     /** 返回所有用户的分页列表 */
     fun list(): UserListResponse = list(UserListParams.none())
 
-    /** @see [list] */
+    /** @see list */
     fun list(
         params: UserListParams = UserListParams.none(),
         requestOptions: RequestOptions = RequestOptions.none(),
     ): UserListResponse
 
-    /** @see [list] */
+    /** @see list */
     fun list(params: UserListParams = UserListParams.none()): UserListResponse =
         list(params, RequestOptions.none())
 
-    /** @see [list] */
+    /** @see list */
     fun list(requestOptions: RequestOptions): UserListResponse =
         list(UserListParams.none(), requestOptions)
 
@@ -100,7 +100,7 @@ interface UserService {
         fun create(params: UserCreateParams): HttpResponseFor<UserResponse> =
             create(params, RequestOptions.none())
 
-        /** @see [create] */
+        /** @see create */
         @MustBeClosed
         fun create(
             params: UserCreateParams,
@@ -115,7 +115,7 @@ interface UserService {
         fun retrieve(userId: String): HttpResponseFor<UserResponse> =
             retrieve(userId, UserRetrieveParams.none())
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         @MustBeClosed
         fun retrieve(
             userId: String,
@@ -124,26 +124,26 @@ interface UserService {
         ): HttpResponseFor<UserResponse> =
             retrieve(params.toBuilder().userId(userId).build(), requestOptions)
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         @MustBeClosed
         fun retrieve(
             userId: String,
             params: UserRetrieveParams = UserRetrieveParams.none(),
         ): HttpResponseFor<UserResponse> = retrieve(userId, params, RequestOptions.none())
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         @MustBeClosed
         fun retrieve(
             params: UserRetrieveParams,
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<UserResponse>
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         @MustBeClosed
         fun retrieve(params: UserRetrieveParams): HttpResponseFor<UserResponse> =
             retrieve(params, RequestOptions.none())
 
-        /** @see [retrieve] */
+        /** @see retrieve */
         @MustBeClosed
         fun retrieve(
             userId: String,
@@ -157,20 +157,20 @@ interface UserService {
          */
         @MustBeClosed fun list(): HttpResponseFor<UserListResponse> = list(UserListParams.none())
 
-        /** @see [list] */
+        /** @see list */
         @MustBeClosed
         fun list(
             params: UserListParams = UserListParams.none(),
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<UserListResponse>
 
-        /** @see [list] */
+        /** @see list */
         @MustBeClosed
         fun list(
             params: UserListParams = UserListParams.none()
         ): HttpResponseFor<UserListResponse> = list(params, RequestOptions.none())
 
-        /** @see [list] */
+        /** @see list */
         @MustBeClosed
         fun list(requestOptions: RequestOptions): HttpResponseFor<UserListResponse> =
             list(UserListParams.none(), requestOptions)
