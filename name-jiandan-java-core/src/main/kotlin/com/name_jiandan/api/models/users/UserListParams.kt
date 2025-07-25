@@ -24,8 +24,10 @@ private constructor(
     /** 页码 */
     fun page(): Optional<Long> = Optional.ofNullable(page)
 
+    /** Additional headers to send with the request. */
     fun _additionalHeaders(): Headers = additionalHeaders
 
+    /** Additional query param to send with the request. */
     fun _additionalQueryParams(): QueryParams = additionalQueryParams
 
     fun toBuilder() = Builder().from(this)
