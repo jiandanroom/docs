@@ -9,7 +9,6 @@ import com.name_jiandan.api.models.users.User
 import java.time.OffsetDateTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class ProGuardCompatibilityTest {
@@ -43,7 +42,6 @@ internal class ProGuardCompatibilityTest {
         assertThat(client.users()).isNotNull()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun userRoundtrip() {
         val jsonMapper = jsonMapper()
