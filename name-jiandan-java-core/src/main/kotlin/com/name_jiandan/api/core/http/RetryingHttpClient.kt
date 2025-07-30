@@ -3,6 +3,7 @@ package com.name_jiandan.api.core.http
 import com.name_jiandan.api.core.RequestOptions
 import com.name_jiandan.api.core.checkRequired
 import com.name_jiandan.api.errors.NameJiandanIoException
+import com.name_jiandan.api.errors.NameJiandanRetryableException
 import java.io.IOException
 import java.time.Clock
 import java.time.Duration
@@ -176,10 +177,10 @@ private constructor(
     }
 
     private fun shouldRetry(throwable: Throwable): Boolean =
-        // Only retry IOException and NameJiandanIoException, other exceptions are not intended to
-        // be
-        // retried.
-        throwable is IOException || throwable is NameJiandanIoException
+        // Only retry known retryable exceptions, other exceptions are not intended to be retried.
+        throwable is IOException ||
+            throwable is NameJiandanIoException ||
+            throwable is NameJiandanRetryableException
 
     private fun getRetryBackoffDuration(retries: Int, response: HttpResponse?): Duration {
         // About the Retry-After header:
