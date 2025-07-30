@@ -6,12 +6,10 @@ import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.name_jiandan.api.core.jsonMapper
 import java.time.OffsetDateTime
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class UserTest {
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun create() {
         val user =
@@ -28,7 +26,6 @@ internal class UserTest {
         assertThat(user.createdAt()).contains(OffsetDateTime.parse("2023-01-01T12:00:00Z"))
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun roundtrip() {
         val jsonMapper = jsonMapper()
