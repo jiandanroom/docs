@@ -205,10 +205,15 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is UserListParams && limit == other.limit && page == other.page && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is UserListParams &&
+            limit == other.limit &&
+            page == other.page &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(limit, page, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int =
+        Objects.hash(limit, page, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "UserListParams{limit=$limit, page=$page, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

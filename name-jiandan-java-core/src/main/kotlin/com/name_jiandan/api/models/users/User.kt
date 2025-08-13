@@ -258,12 +258,17 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is User && id == other.id && email == other.email && name == other.name && createdAt == other.createdAt && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is User &&
+            id == other.id &&
+            email == other.email &&
+            name == other.name &&
+            createdAt == other.createdAt &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(id, email, name, createdAt, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(id, email, name, createdAt, additionalProperties)
+    }
 
     override fun hashCode(): Int = hashCode
 
