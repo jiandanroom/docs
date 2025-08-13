@@ -220,12 +220,14 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is UserListResponse && data == other.data && success == other.success && total == other.total && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is UserListResponse &&
+            data == other.data &&
+            success == other.success &&
+            total == other.total &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
     private val hashCode: Int by lazy { Objects.hash(data, success, total, additionalProperties) }
-    /* spotless:on */
 
     override fun hashCode(): Int = hashCode
 
