@@ -1,7 +1,14 @@
 rootProject.name = "name-jiandan-java-root"
 
-include("name-jiandan-java")
-include("name-jiandan-java-client-okhttp")
-include("name-jiandan-java-core")
-include("name-jiandan-java-proguard-test")
-include("name-jiandan-java-example")
+val projectNames = rootDir.listFiles()
+    ?.asSequence()
+    .orEmpty()
+    .filter { file ->
+        file.isDirectory &&
+        file.name.startsWith("name-jiandan-java") &&
+        file.listFiles()?.asSequence().orEmpty().any { it.name == "build.gradle.kts" }
+    }
+    .map { it.name }
+    .toList()
+println("projects: $projectNames")
+projectNames.forEach { include(it) }
