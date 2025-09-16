@@ -1,6 +1,78 @@
-fdsf\
-sfsdf
-sdfsdf
-sdfsdfsdf
-sdfsdf
-sdfsdfsfd
+openapi: 3.0.1
+info:
+  title: api-cloud-openapi
+  description: apiCloud openapi
+  version: 1.0.0
+servers:
+  - url: https://qilin.qihoo.net
+paths:
+  /qilin-xp-api/api/base/authn/code/value:
+    get:
+      summary: codevalueget测试
+      description: ""
+      operationId: codevaluegetCeShi
+      parameters: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Respe97614d59c864035b5905f4b22f957b3"
+      servers:
+        - url: https://qilin.qihoo.net
+      x-api-cloud: 00000000-0000-0009-8157-62fdf3fa2402
+  /livecloud/api/cas/getUser:
+    post:
+      summary: zyunGetUser
+      description: ""
+      operationId: zyungetuser
+      parameters:
+        - name: sign
+          in: query
+          description: sign
+          required: true
+          schema:
+            type: string
+          example: zyun
+        - name: cookie
+          in: header
+          description: zyun的cookie
+          required: true
+          schema:
+            type: string
+          example: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestBody_cc18763749ef41bc85744f2fe7dc7e4d"
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resp445006ca25e84239acd8d1763a1a6195"
+      servers:
+        - url: https://console.zyun.qihoo.net
+      x-api-cloud: 00000000-0000-0009-81f5-85c233ccfa1e
+components:
+  schemas:
+    Respe97614d59c864035b5905f4b22f957b3:
+      type: object
+      properties: {}
+    RequestBody_cc18763749ef41bc85744f2fe7dc7e4d:
+      type: object
+      properties:
+        proxyurl:
+          title: /cas/getUser?sign=zyun
+          type: string
+          example: /cas/getUser?sign=zyun
+        platform:
+          title: iamaccount
+          type: string
+          example: iamaccount
+    Resp445006ca25e84239acd8d1763a1a6195:
+      type: object
+      properties: {}
