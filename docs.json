@@ -32,7 +32,9 @@
               "essentials/reusable-snippets"
             ]
           }
-        ]
+        ],
+        "icon": "alipay",
+        "hidden": true
       },
       {
         "tab": "API Reference",
@@ -50,6 +52,17 @@
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "CLI",
+        "dropdowns": [
+          {
+            "dropdown": "123",
+            "pages": [
+              "file"
             ]
           }
         ]
